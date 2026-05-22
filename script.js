@@ -1,19 +1,11 @@
 const fades = document.querySelectorAll('.fade');
 
-const observer = new IntersectionObserver(entries => {
+window.addEventListener('scroll', () => {
+  fades.forEach(fade => {
+    const top = fade.getBoundingClientRect().top;
 
-  entries.forEach(entry => {
-
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
+    if(top < window.innerHeight - 100){
+      fade.classList.add('visible');
     }
-
   });
-
-}, {
-  threshold:0.15
-});
-
-fades.forEach(fade => {
-  observer.observe(fade);
 });
